@@ -5,6 +5,3 @@
 #### 76754650
 #### Shwaifet,Beirut
 
-
-hello world
-
