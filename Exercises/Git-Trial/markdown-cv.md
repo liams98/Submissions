@@ -1,7 +1,7 @@
 
 # William AbouSharaf      
 
-<!--![Profile Picture](https://scontent.fbey14-1.fna.fbcdn.net/v/t1.0-9/18341669_1464005700316596_1532366128797574055_n.jpg?_nc_cat=104&_nc_ht=scontent.fbey14-1.fna&oh=8ae4563cc4792cb40ec2728435c8efd1&oe=5D710E7C)-->
+
 
 
 
