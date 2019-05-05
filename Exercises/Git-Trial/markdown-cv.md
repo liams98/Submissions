@@ -2,7 +2,7 @@
 # William AbouSharaf      
 
 
-
+![Profile Picture](https://github.com/liams98/Submissions/blob/master/Exercises/Git-Trial/profile_picture12.jpg?raw=true)
 
 
 >### **Personal information**
