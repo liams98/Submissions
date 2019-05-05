@@ -41,3 +41,9 @@ My job was to make perfect circular delicous pizza.
  
 
 
+>## **Hobbies**
+> + Video Games.
+> + Game Development.
+> + Swimming/Diving.
+> + Job related activities.
+> + Reading books related to programming.
