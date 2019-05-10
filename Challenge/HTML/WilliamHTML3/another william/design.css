@@ -1,0 +1,132 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color:lightblue;
+    margin:0;
+}
+main{
+    width:1000px;
+    margin:auto;
+}
+
+#head{
+    background-image: url("https://cdn.pixabay.com/photo/2017/07/01/19/48/background-2462431__340.jpg");
+    background-repeat: no-repeat;
+    background-size:cover;
+    height:350px;
+}
+
+#title{
+    display: inline-block;
+    margin:100px 180px;
+}
+
+#title p{
+    font-size:15px;
+}
+
+#nav_bar{
+    background-color:rgba(0,0,0,0.3);
+    margin: 5px 0;
+    width:100%;
+}
+
+#nav_ul{ 
+    text-align: center;
+    display:flex;
+    flex-direction:row;
+    justify-content: space-between;
+}
+
+.nav_li{
+    list-style:none;
+    width:100%;
+    padding:10px;
+}
+
+nav li:hover{
+    background-color:rgba(0,0,0,0.5);
+}
+
+
+#mid_page{
+    display: flex;
+    flex-direction: row;
+    width:100%;
+}
+
+#left_side{
+    width:25%;
+}
+
+
+#Main_menu{
+    width:100%;
+}
+
+#menu_ul{
+    list-style: none;
+}
+
+.menu_list:hover{
+    color:black;
+}
+
+#Block{
+    margin-top:20px;
+}
+
+#right_side{
+    width: 75%;
+    height:100%;
+}
+
+#Subs_Services div{
+    width:50%;
+}
+
+
+.Two{
+    margin-top:50px;
+    display: block;
+    float:left;
+}
+
+hr{
+    margin: 25px 0;
+}
+
+
+#footer{
+    display:inline-block;
+    width:100%;
+}
+
+#info{
+    width:50%;
+    float:left;
+}
+
+#info input{
+    width:90%;
+}
+
+#radio_section{
+    width:50%;
+    float:right;   
+}
+
+#submit{
+    text-align: center;
+}
+
+
+
+
+
+
+
