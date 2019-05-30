@@ -57,13 +57,14 @@ input{
   height: 25px;
   width:25px;
   background-color:lightgray;
-  border-radius: 50%;
+  border-radius: 100%;
   margin:15px;
 }
 
 .columns{
+  
   display: flex;
-  width:90vw;
+  width:98vw;
   height: 100vh;
   margin:20px auto;
 }
@@ -75,6 +76,15 @@ input{
 } 
 
 .listVid{
-  width:30%;
+  width:25%;
   height: 100%;
+  margin-left:25px;
+  font-size:18px;
+}
+
+
+
+hr{
+  border-color:lightgray;
+  width:100%;
 }

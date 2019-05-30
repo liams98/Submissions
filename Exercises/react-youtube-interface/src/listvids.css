@@ -1,0 +1,19 @@
+.vids{
+    width:100%;
+    height:120px;
+}
+
+.vid-area{
+    width:50%
+}
+
+.div-vids{
+    margin:15px 0;
+    display: flex;
+    width:100%;
+}
+.Text-area{
+    width:100%;
+    font-size:15px;
+    font-weight: bold;
+}
