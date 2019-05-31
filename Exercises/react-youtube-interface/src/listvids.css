@@ -12,6 +12,10 @@
     display: flex;
     width:100%;
 }
+
+.div-vids:hover{
+    cursor:pointer;
+}
 .Text-area{
     width:100%;
     font-size:15px;

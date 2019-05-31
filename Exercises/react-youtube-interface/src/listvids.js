@@ -7,6 +7,7 @@ export const UpNextVid = ({ thumb, th_title }) => {
     return (
         <div className="div-vids">
             <div className = "vid-area">
+                <a></a>
                 <img className="vids" src={thumb} alt="Suggested videos"></img>
             </div>
             <div className = "Text-area">
@@ -16,11 +17,13 @@ export const UpNextVid = ({ thumb, th_title }) => {
     );
 }
 
-export const VidList = ({ thumbs, ths_title }) => {
+export const VidList = ({ thumbs, ths_title, side_Url }) => {
     return (
-        <div className="div-vids">
+        <div onClick = { () =>{
+            
+        }}className="div-vids">
             <div className = "vid-area">
-                <img className="vids" src={thumbs} alt="Suggested Videos" />
+                <img  className="vids" src={thumbs} alt="Suggested Videos" onVideoSelect/>
             </div>
             <div id = "sideText">
                 <p className = "textarea">{ths_title}</p>

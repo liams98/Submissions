@@ -19,6 +19,8 @@ const App = () => {
 
   const [search, setSearch] = useState("")
 
+  const [vid, setVid] = useState("")
+
   useEffect(() => {
     getvids();
   }, [query])
@@ -27,7 +29,7 @@ const App = () => {
     fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&maxResults=25&type=video&key=${apikey}`)
       .then(response => {
 
-        return response.json();
+        return response.json();3
       }).then(data => {
         setVidUrl(data.items);
         console.log("data ==>", data.items);
@@ -43,6 +45,10 @@ const App = () => {
     e.preventDefault();
     setQuery(search);
     setSearch("");
+  }
+
+  const getVideo = () =>{
+    
   }
 
 
@@ -74,7 +80,7 @@ const App = () => {
         <div className="mainVid">
           {
             vidUrl.length > 0 ?
-              <MainVid
+              <MainVid 
                 vid_url={vidUrl[0].id.videoId}
                 title={vidUrl[0].snippet.title}
                 discs={vidUrl[0].snippet.discription}
@@ -105,6 +111,8 @@ const App = () => {
             vidUrl.length > 0 ?
               vidUrl.map(url => (
                 <VidList
+                // props.setVidUrl('Hey ')=
+                  // const side_url = 
                   thumbs={url.snippet.thumbnails.default.url}
                   ths_title = {url.snippet.title}
                   />
