@@ -1,0 +1,66 @@
+Problem 1. Get all the names of students in the database:
+
+SELECT name from students
+
+Alex
+Basma
+Hasan
+Jana
+Layal
+Robert
+
+--------------------------------------------------------
+
+Problem 2. Get all the data of students above 30 years old
+
+SELECT * from students where age > 30
+
+5	Robert	34	M	500
+6	Jana	33	F	500
+
+--------------------------------------------------------
+
+Problem 3.Get the names of the females who are 30
+
+Select name from students where Gender == "F" AND Age == 30
+
+
+
+---------------------------------------------------------
+
+
+Problem 4. Get the number of Points of Alex
+
+Select Points from students where name == "Alex"
+
+200
+
+-----------------------------------------------------------
+ Problem 5. Add yourself as a new student (your name, your age...)
+
+ INSERT into students(Name,Age,Gender,Points) VALUES("William","20","M","2000")
+
+
+ -- At line 1:
+INSERT into students(Name,Age,Gender,Points) VALUES("Wiliam","20","M","2000")
+-- Result: query executed successfully. Took 0ms, 1 rows affected
+
+--------------------------------------------------------------
+
+Problem 6: Increase the points of Basma because she solved a new exercise
+
+-- At line 1:
+UPDATE students SET Points = Points + 500 where name == "Basma"
+-- Result: query executed successfully. Took 0ms, 1 rows affected
+
+-----------------------------------------------------------------------------
+
+Problem 7. Decrease the points of Alex because he's late today 
+
+
+
+-- At line 1:
+UPDATE students Set Points = Points - 1000 where name = "Alex"
+-- Result: query executed successfully. Took 0ms, 1 rows affected
+
+-----------------------------------------------------------------------------------
