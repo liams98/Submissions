@@ -64,3 +64,56 @@ UPDATE students Set Points = Points - 1000 where name = "Alex"
 -- Result: query executed successfully. Took 0ms, 1 rows affected
 
 -----------------------------------------------------------------------------------
+
+
+Creating graduation table:
+
+-- At line 1:
+CREATE TABLE "graduatess"
+(
+"ID" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+"name" TEXT NOT NULL,
+"AGE" INTEGER,
+"GENDER" TEXT,
+"POINTS" INTEGER,
+"Graduation"  TEXT
+);
+-- Result: query executed successfully. Took 21ms
+
+
+--------------------------------------------------------------------------
+
+Copy Layal's data from students to graduates
+
+INSERT INTO graduatess(id,name,Age,Gender,Points)
+Select * from students where name = "Layal"
+
+-- At line 1:
+INSERT INTO graduatess(id,name,Age,Gender,Points)
+Select * from students where name = "Layal"
+-- Result: query executed successfully. Took 2ms, 1 rows affected
+
+------------------------------------------------------------------------------
+
+Add the graduation date previously mentioned to Layal's record in graduates
+
+UPDATE graduatess
+SET Graduation = "08/09/2018"
+
+
+-- At line 1:
+UPDATE graduatess
+SET Graduation = "08/09/2018"
+-- Result: query executed successfully. Took 0ms, 1 rows affected
+
+-------------------------------------------------------------------------------
+
+Remove Layal's record from students
+
+DELETE FROM students WHERE name == "Layal"
+
+-- At line 1:
+DELETE FROM students WHERE name == "Layal"
+-- Result: query executed successfully. Took 0ms, 1 rows affected
+
+--------------------------------------------------------------------------------
