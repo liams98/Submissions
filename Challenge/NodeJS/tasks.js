@@ -39,6 +39,7 @@ function onDataReceived(text) {
   }
   else if(text === 'hello\n'){
     hello();
+    //it will list all the possible commands.
   }else if(text === "help\n"){
     help()
   }
@@ -59,6 +60,7 @@ function unknownCommand(c){
   console.log('unknown command: "'+c.trim()+'"')
 }
 
+//the list that will be shown to the user when help is typed
 function help(){
   console.log("hello 'To say hi to me :D'\n"+ "exit/quit 'to leave this epic CLI'")
 }
