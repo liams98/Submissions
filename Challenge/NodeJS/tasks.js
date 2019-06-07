@@ -37,10 +37,9 @@ function onDataReceived(text) {
   if (text === 'quit\n' || text === 'exit\n') {
     quit();
   }
-  else if(text === 'hello\n'){
-    hello();
-    //it will list all the possible commands.
-  }else if(text === "help\n"){
+  else if(`${text}\n`){
+    hello(text);
+  }else if(text === "help\n"){//it will list all the possible commands.
     help()
   }
   else{
@@ -71,8 +70,8 @@ function help(){
  *
  * @returns {void}
  */
-function hello(){
-  console.log('hello!')
+function hello(txt){
+  console.log(`${txt}`.trim()+ "!")
 }
 
 
