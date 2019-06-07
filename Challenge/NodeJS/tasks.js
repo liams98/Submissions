@@ -39,6 +39,8 @@ function onDataReceived(text) {
   }
   else if(text === 'hello\n'){
     hello();
+  }else if(text === "help\n"){
+    help()
   }
   else{
     unknownCommand(text);
@@ -55,6 +57,10 @@ function onDataReceived(text) {
  */
 function unknownCommand(c){
   console.log('unknown command: "'+c.trim()+'"')
+}
+
+function help(){
+  console.log("hello 'To say hi to me :D'\n"+ "exit/quit 'to leave this epic CLI'")
 }
 
 
