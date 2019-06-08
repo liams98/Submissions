@@ -32,22 +32,20 @@ function startApp(name) {
  * @returns {void}
  */
 
- 
-function onDataReceived(text) {
-  if (text === "quit\n" || text === "exit\n") {
+
+function onDataReceived(text){
+  if(text === "quit\n" || text === "exit\n"){
     quit();
-    console.log(text.length)
-    console.log(text.indexOf(" ") === -1)
-  } else if (`${text}\n`) {
-    if (text.indexOf(" ") === -1) {
-      hello(`${text.trim()}!`);
-    } else {
-      hello(`${text.trim()} !`);
+  }else if ( `${text}\n` && !text.startsWith("help")){
+    if(`${text}\n` && text.indexOf(" ") === -1){
+      hello(`${text.trim()}!`)
+    }else{
+    hello(`${text.trim()} !`);
     }
-  } else if (text === "help\n") {
-    //it will list all the possible commands.
-    help();
-  } else {
+
+  }else if(`${text}\n` && text.indexOf("help") === 0){
+    help()
+  }else{
     unknownCommand(text);
   }
 }
