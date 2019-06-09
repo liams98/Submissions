@@ -38,11 +38,11 @@ function startApp(name) {
       quit();
     }
     
-    else if(text.indexOf("hello") === 0){
+    else if(text.startsWith("hello")){
       hello(`${text.trim()}!`)
     }
     
-    else if(text.indexOf("help") === 0){
+    else if(text.startsWith("help")){
       help()
     }
 
@@ -52,6 +52,10 @@ function startApp(name) {
 
     else if(text.startsWith("add")){
       add(text);
+    }
+
+    else if(text.startsWith("remove")){
+      remove(text)
     }
     
     else{
@@ -74,9 +78,17 @@ function unknownCommand(c) {
 
 //the list that will be shown to the user when help is typed
 function help() {
-  console.log(
-    "hello 'To say hi to me :D'\n" + "exit/quit 'to leave this epic CLI'"
-  );
+  var x =  `----------------------------------------
+   To say hi to me 'hello'
+   To say hi in an epic way use : 'hello + YOUR STATEMENT'
+
+   To leave this epic CLI use : 'exit/quit'
+
+
+   To remove last task use: 'remove' 
+   To remove a specific task use :'remove NUMBER'
+   -----------------------------------------`
+  console.log(x);
 }
 
 /**
@@ -105,6 +117,22 @@ function add (n_task){
     console.log("please add a task while using 'add'");
   }
 }
+
+
+function remove(c_task){
+  let sub_string = c_task.substring(7)
+
+   if(sub_string === sub_string){
+    tasks.shift(checkNum(sub_string))
+    return c_task;
+  }else if(sub_string === ""){
+    tasks.pop();
+  }else{
+    console.log("to remove last task use: 'remove' \n to remove a specific task use :'remove NUMBER'")
+  }
+}
+
+
 /**
  * Exits the application
  *
