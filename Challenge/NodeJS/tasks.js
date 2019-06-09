@@ -49,6 +49,10 @@ function startApp(name) {
     else if(text.startsWith("list")){
       list()
     }
+
+    else if(text.startsWith("add")){
+      add(text);
+    }
     
     else{
       unknownCommand(text)
@@ -84,13 +88,23 @@ function hello(txt) {
   console.log(txt);
 }
 
+
+var tasks = ["kill people", "buy something", "heyooo"]
+
 function list(){
-  let tasks = ["kill people", "buy something", "heyooo"]
-  for(i = 1; i < tasks.length + 1; i++){
-    console.log(`${i}-[ ]${tasks[i]}`)
+  for(i = 0 ; i < tasks.length; i++){
+    console.log(`${i + 1}-[ ]${tasks[i]}`)
   }
 }
 
+
+function add (n_task){
+  if(n_task.substring(4) !== ""){
+    tasks.push(n_task.substring(4).trim());
+  }else{
+    console.log("please add a task while using 'add'");
+  }
+}
 /**
  * Exits the application
  *
