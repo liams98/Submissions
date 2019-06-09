@@ -32,23 +32,42 @@ function startApp(name) {
  * @returns {void}
  */
 
-
-function onDataReceived(text){
-  if(text === "quit\n" || text === "exit\n"){
-    quit();
-  }else if ( `${text}\n` && !text.startsWith("help")){
-    if(`${text}\n` && text.indexOf(" ") === -1){
-      hello(`${text.trim()}!`)
-    }else{
-    hello(`${text.trim()} !`);
+ function onDataReceived(text){
+   if(`${text}\n`){
+    if(text === "quit\n" || text === "exit\n"){
+      quit();
     }
+    
+    else if(text.indexOf("hello") === 0){
+      hello(`${text.trim()}!`)
+    }
+    
+    else if(text.indexOf("help") === 0){
+      help()
+    }
+    
+    else{
+      unknownCommand(text)
+    }
+   }
+ }
 
-  }else if(`${text}\n` && text.indexOf("help") === 0){
-    help()
-  }else{
-    unknownCommand(text);
-  }
-}
+// function onDataReceived(text){
+//   if(text === "quit\n" || text === "exit\n"){
+//     quit();
+//   }else if ( `${text}\n` && !text.startsWith("help")){
+//     if(`${text}\n` && text.indexOf(" ") === -1){
+//       hello(`${text.trim()}!`)
+//     }else{
+//     hello(`${text.trim()} !`);
+//     }
+
+//   }else if(`${text}\n` && text.indexOf("help") === 0){
+//     help()
+//   }else{
+//     unknownCommand(text);
+//   }
+// }
 
 /**
  * prints "unknown command"
