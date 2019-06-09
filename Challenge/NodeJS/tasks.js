@@ -84,6 +84,9 @@ function help() {
 
    To leave this epic CLI use : 'exit/quit'
 
+   To list the Task use : "list"
+
+   To add tasks use : "add TASK"
 
    To remove last task use: 'remove' 
    To remove a specific task use :'remove NUMBER'
