@@ -45,6 +45,10 @@ function startApp(name) {
     else if(text.indexOf("help") === 0){
       help()
     }
+
+    else if(text.startsWith("list")){
+      list()
+    }
     
     else{
       unknownCommand(text)
@@ -52,22 +56,6 @@ function startApp(name) {
    }
  }
 
-// function onDataReceived(text){
-//   if(text === "quit\n" || text === "exit\n"){
-//     quit();
-//   }else if ( `${text}\n` && !text.startsWith("help")){
-//     if(`${text}\n` && text.indexOf(" ") === -1){
-//       hello(`${text.trim()}!`)
-//     }else{
-//     hello(`${text.trim()} !`);
-//     }
-
-//   }else if(`${text}\n` && text.indexOf("help") === 0){
-//     help()
-//   }else{
-//     unknownCommand(text);
-//   }
-// }
 
 /**
  * prints "unknown command"
@@ -94,6 +82,13 @@ function help() {
  */
 function hello(txt) {
   console.log(txt);
+}
+
+function list(){
+  let tasks = ["kill people", "buy something", "heyooo"]
+  for(i = 1; i < tasks.length + 1; i++){
+    console.log(`${i}-[ ]${tasks[i]}`)
+  }
 }
 
 /**
