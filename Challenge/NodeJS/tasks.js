@@ -135,6 +135,14 @@ function remove(c_task){
   }
 }
 
+function checkNum(task_num){
+  if(task_num <= tasks.length && task_num != 0){
+    return task_num
+  }else{
+    console.log("This Task number doesn't exist")
+  }
+}
+
 
 /**
  * Exits the application
