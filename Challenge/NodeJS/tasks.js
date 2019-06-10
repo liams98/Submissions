@@ -32,38 +32,27 @@ function startApp(name) {
  * @returns {void}
  */
 
- function onDataReceived(text){
-   if(`${text}\n`){
-    if(text === "quit\n" || text === "exit\n"){
+function onDataReceived(text) {
+  if (`${text}\n`) {
+    if (text === "quit\n" || text === "exit\n") {
       quit();
+    } else if (text.startsWith("hello")) {
+      hello(`${text.trim()}!`);
+    } else if (text.startsWith("help")) {
+      help();
+    } else if (text.startsWith("list")) {
+      list();
+    } else if (text.startsWith("add")) {
+      add(text)
+    } else if (text.startsWith("remove")) {
+      remove(text);
+    } else if (text.startsWith("edit")) {
+      edit(text);
+    } else {
+      unknownCommand(text);
     }
-    
-    else if(text.startsWith("hello")){
-      hello(`${text.trim()}!`)
-    }
-    
-    else if(text.startsWith("help")){
-      help()
-    }
-
-    else if(text.startsWith("list")){
-      list()
-    }
-
-    else if(text.startsWith("add")){
-      add(text);
-    }
-
-    else if(text.startsWith("remove")){
-      remove(text)
-    }
-    
-    else{
-      unknownCommand(text)
-    }
-   }
- }
-
+  }
+}
 
 /**
  * prints "unknown command"
@@ -78,9 +67,9 @@ function unknownCommand(c) {
 
 //the list that will be shown to the user when help is typed
 function help() {
-  var x =  `----------------------------------------
+  var x = `----------------------------------------
    To say hi to me 'hello'
-   To say hi in an epic way use : 'hello + YOUR STATEMENT'
+   To say hi in an epic way use : 'hello  YOUR STATEMENT'
 
    To leave this epic CLI use : 'exit/quit'
 
@@ -88,9 +77,12 @@ function help() {
 
    To add tasks use : "add TASK"
 
+   To edit the last sentence use : "edit Text"
+   To edit a specific task use : "edit TASK_NUMBER TEXT"
+
    To remove last task use: 'remove' 
    To remove a specific task use :'remove NUMBER'
-   -----------------------------------------`
+   -----------------------------------------`;
   console.log(x);
 }
 
@@ -103,46 +95,61 @@ function hello(txt) {
   console.log(txt);
 }
 
+var tasks = ["kill people", "buy something", "heyooo"];
 
-var tasks = ["kill people", "buy something", "heyooo"]
-
-function list(){
-  for(i = 0 ; i < tasks.length; i++){
-    console.log(`${i + 1}-[ ]${tasks[i]}`)
+function list() {
+  for (i = 0; i < tasks.length; i++) {
+    console.log(`${i + 1}-[ ]${tasks[i]}`);
   }
 }
 
-
-function add (n_task){
-  if(n_task.substring(4) !== ""){
+function add(n_task) {
+  if (n_task.substring(4) !== "") {
     tasks.push(n_task.substring(4).trim());
-  }else{
+  } else {
     console.log("please add a task while using 'add'");
   }
 }
 
+function remove(c_task) {
+  let sub_string = c_task.substring(6);
 
-function remove(c_task){
-  let sub_string = c_task.substring(7)
-
-   if(sub_string === sub_string){
-    tasks.shift(checkNum(sub_string))
-    return c_task;
-  }else if(sub_string === ""){
-    tasks.pop();
-  }else{
-    console.log("to remove last task use: 'remove' \n to remove a specific task use :'remove NUMBER'")
+  if (sub_string === sub_string) {
+    if (checkNum(sub_string)) {
+      tasks.splice(sub_string.trim() - 1, 1);
+      list();
+      return c_task;
+    }
+  } else {
+    console.log(
+      "to remove last task use: 'remove' \n to remove a specific task use :'remove NUMBER'"
+    );
   }
 }
 
-function checkNum(task_num){
-  if(task_num <= tasks.length && task_num != 0){
-    return task_num
-  }else{
-    console.log("This Task number doesn't exist")
+function checkNum(task_num) {
+  if (task_num <= tasks.length && task_num != 0) {
+    return task_num;
+  } else {
+    console.log("This Task number doesn't exist");
   }
 }
 
+
+function edit(text_detail) {
+  num_task = text_detail.substring(4,6).trim();
+  edit_task = text_detail.substring(7);
+  if(text_detail=='edit\n'){
+    console.log('error')
+  }
+  else if (num_task <=tasks.length-1) {
+    tasks[num_task - 1] = edit_task.trim();
+  }else{
+    console.log(tasks.splice(tasks.length - 1,1, text_detail.substring(4).trim()))
+  }
+ 
+  
+}
 
 /**
  * Exits the application
