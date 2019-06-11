@@ -85,6 +85,9 @@ function help() {
    To edit the last sentence use : "edit Text"
    To edit a specific task use : "edit TASK_NUMBER TEXT"
 
+   To check a task use : check TASK_NUMBER
+   To uncheck a task use : uncheck TASK_NUMBER
+
    To remove last task use: 'remove' 
    To remove a specific task use :'remove NUMBER'
    -----------------------------------------`;
