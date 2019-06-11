@@ -48,7 +48,12 @@ function onDataReceived(text) {
       remove(text);
     } else if (text.startsWith("edit")) {
       edit(text);
-    } else {
+    } else if(text.startsWith("check")){
+        check(text)
+    }else if(text.startsWith("uncheck")){
+      unCheck(text)
+    }
+     else {
       unknownCommand(text);
     }
   }
@@ -95,29 +100,27 @@ function hello(txt) {
   console.log(txt);
 }
 
-var tasks = ["kill people", "buy something", "heyooo"];
+var tasks = [{task:'eat',done:'false'},{task:'sleep',done:'false'},{task:'wake up',done:'false'}]
 
 function list() {
-  const checkList = (n =>{
-    if(n % 2 === 0){
-      return "✓"
-    }else{
-      return " "
-    }
-  })
   for (i = 0; i < tasks.length; i++) {
-    
-    console.log(`${i + 1}-[${checkList(i)}]${tasks[i]}`);
+    if(tasks[i].done == true){
+    console.log(`${i + 1}-[✓]${tasks[i].tasks}`);
+    }else{
+      console.log(`${i + 1}-[ ]${tasks[i].task}`);
+    }
   }
 }
 //✓
 function add(n_task) {
   if (n_task.substring(4) !== "") {
-    tasks.push(n_task.substring(4).trim());
+    tasks.push({task:n_task.substring(4).trim(),done:"false"});
+    list()
   } else {
     console.log("please add a task while using 'add'");
   }
 }
+
 
 function remove(c_task) {
   let sub_string = c_task.substring(6);
@@ -136,7 +139,7 @@ function remove(c_task) {
 }
 
 function checkNum(task_num) {
-  if (task_num <= tasks.length && task_num != 0) {
+  if (task_num <= tasks.length) {
     return task_num;
   } else {
     console.log("This Task number doesn't exist");
@@ -155,9 +158,30 @@ function edit(text_detail) {
   }else{
     console.log(tasks.splice(tasks.length - 1,1, text_detail.substring(4).trim()))
   }
- 
-  
 }
+
+function check(n){
+  let input = n.trim().split(" ")
+  console.log(tasks.length)
+  if(input[1] - 1 < tasks.length){
+    tasks[input[1] -1 ].done = true;
+    list()
+  }else{
+    console.log("choose a task number after CHECK")
+  }
+}
+
+function unCheck(n){
+  let input = n.trim().split(" ")
+  console.log(tasks.length)
+  if(input[1] - 1 < tasks.length){
+    tasks[input[1] -1 ].done = false;
+    list()
+  }else{
+    console.log("choose a task number after CHECK")
+  }
+}
+
 
 /**
  * Exits the application
