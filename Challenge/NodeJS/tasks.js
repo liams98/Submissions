@@ -98,11 +98,19 @@ function hello(txt) {
 var tasks = ["kill people", "buy something", "heyooo"];
 
 function list() {
+  const checkList = (n =>{
+    if(n % 2 === 0){
+      return "✓"
+    }else{
+      return " "
+    }
+  })
   for (i = 0; i < tasks.length; i++) {
-    console.log(`${i + 1}-[ ]${tasks[i]}`);
+    
+    console.log(`${i + 1}-[${checkList(i)}]${tasks[i]}`);
   }
 }
-
+//✓
 function add(n_task) {
   if (n_task.substring(4) !== "") {
     tasks.push(n_task.substring(4).trim());
