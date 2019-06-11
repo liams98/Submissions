@@ -1,3 +1,7 @@
+var fs = require('fs')
+var data = fs.readFileSync("Database.json");
+var tasks = JSON.parse(data)
+console.log(tasks)
 /**
  * Starts the application
  * This is the function that is run when the app starts
@@ -103,7 +107,7 @@ function hello(txt) {
   console.log(txt);
 }
 
-var tasks = [{task:'eat',done:'false'},{task:'sleep',done:'false'},{task:'wake up',done:'false'}]
+// var tasks = [{task:'eat',done:'false'},{task:'sleep',done:'false'},{task:'wake up',done:'false'}]
 
 function list() {
   for (i = 0; i < tasks.length; i++) {
@@ -193,6 +197,10 @@ function unCheck(n){
  */
 function quit() {
   console.log("Quitting now, goodbye!");
+  fs.writeFileSync("Database.json",JSON.stringify(tasks),function(err){
+    if(err) throw err
+    console.log("saved")
+  })
   process.exit();
 }
 
