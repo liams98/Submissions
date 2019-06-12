@@ -46,7 +46,22 @@ const movies = [
 
 //CRUD ROUTES---------------
 
-app.get("/movies/create", function(req, res) {});
+app.get("/movies/create", function(req, res) {
+  TITLE = req.query.title
+  YEAR = req.query.year
+  RATING = req.query.rating
+ 
+  x = (RATING ?  RATING :  "4")
+
+  if(TITLE != undefined || YEAR != undefined || YEAR != NAN || YEAR.length != 4){
+    movies.push({TITLE,YEAR, x})
+    res.send(movies)
+  }else{
+    res.send({status:403, error:true, message:'you cannot create a movie without providing a title and a year'})
+  }
+
+});
+
 
 app.get("/movies/read/:TAGID?/:ID?", function(req, res) {
   TAG = req.params.TAGID;
@@ -85,6 +100,8 @@ app.get("/movies/read/:TAGID?/:ID?", function(req, res) {
         return 0;
       })
     });
+  }else{
+    res.send(movies)
   }
 
   if(TAG == "id" && id < movies.length){
