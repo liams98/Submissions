@@ -115,7 +115,17 @@ app.get("/movies/read/:TAGID?/:ID?", function(req, res) {
 
 app.get("/movies/update", function(req, res) {});
 
-app.get("/movies/delete", function(req, res) {});
+app.get("/movies/delete/:id?", function(req, res) {
+  ID = req.params.id
+
+  if(ID && ID <= movies.length){
+    movies.splice(ID - 1,1)
+    res.send(movies)
+  }else{
+    res.send({status:404, error:true, message: `the movie ${ID} does not exist`})
+  }
+});
+
 
 app.listen(3000);
 
