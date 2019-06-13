@@ -1,9 +1,31 @@
 var express = require("express");
 var app = express();
 
-app.get("/", function(req, res) {
-  res.send("<h1>ok</h1>");
-});
+const mongoose = require("mongoose");
+
+mongoose.connect(
+  "mongodb+srv://William:develwer@cluster0-sxlgp.gcp.mongodb.net/test?retryWrites=true&w=majority",{ useNewUrlParser: true }
+);
+
+const Movie = require("./Movies")
+  // const MongoClient = require(‘mongodb’).MongoClient;
+  // const uri = "mongodb+srv://William:<password>@cluster0-sxlgp.gcp.mongodb.net/test?retryWrites=true&w=majority";
+  // const client = new MongoClient(uri, { useNewUrlParser: true });
+  // client.connect(err => {
+  //   const collection = client.db("test").collection("devices");
+  //   // perform actions on the collection object
+  //   client.close();
+  // });
+
+  // const userSchema = mongoose.Schema({
+  //   title:String,
+  //   ratig:String,
+  //   :String,
+  //   country:String
+  // });
+  // module.exports = mongoose.model('User',userSchema);
+
+
 app.get("/test", function(req, res) {
   res.send({ status: "200", message: "ok" });
 });
@@ -47,107 +69,105 @@ const movies = [
 //CRUD ROUTES---------------
 
 app.get("/movies/create", function(req, res) {
-  TITLE = req.query.title
-  YEAR = req.query.year
-  RATING = req.query.rating
- 
-  x = (RATING ?  RATING :  4)
+  TITLE = req.query.title;
+  YEAR = req.query.year;
+  RATING = req.query.rating;
 
-  if(TITLE != undefined || YEAR != undefined || YEAR != NAN || YEAR.length != 4){
-    movies.push({TITLE,YEAR, x})
-    res.send(movies)
-  }else{
-    res.send({status:403, error:true, message:'you cannot create a movie without providing a title and a year'})
+  
+
+  x = RATING ? RATING : 4;
+
+  if (
+    TITLE != undefined ||
+    YEAR != undefined ||
+    YEAR != NAN ||
+    YEAR.length != 4
+  ) {
+    a = new Movie({
+      _id: new mongoose.Types.ObjectId(),
+      title:TITLE,
+      year:YEAR,
+      rating:x
+    })
+    a.save()
+      .then(result => {
+        console.log(result);
+      }).catch(err => console.log(err))
+    res.send(Movie);
+    
+    
+  } else {
+    res.send({
+      status: 403,
+      error: true,
+      message: "you cannot create a movie without providing a title and a year"
+    });
   }
-
 });
-
 
 app.get("/movies/read/:TAGID?/:ID?", function(req, res) {
   TAG = req.params.TAGID;
-  id = req.params.ID
-  
+  id = req.params.ID;
+
   if (TAG == "by-date") {
-    res.send({
-      status: "200",
-      data: movies.sort(function(a, b) {
-        return a.year - b.year;
-      })
-    });
-  }
-  
-  else if (TAG == "by-rating") {
-    res.send({
-      status: 200,
-      data: movies.sort(function(a, b) {
-        return a.rating - b.rating;
-      })
-    });
-  }
+    
+    Movie.find().sort({year:1}).then((data =>{
+      res.send({sorteddate: data})
+    }))
+  } else if (TAG == "by-rating") {
+    Movie.find().sort({rating:1}).then((data =>{
+      res.send({sortedRate: data})
+    }))
+  } else if (TAG == "by-title") {
 
-   else if (TAG == "by-title") {
-    res.send({
-      status: 200,
-      data: movies.sort(function(a, b) {
-        var x = a.title;
-        var y = b.title;
-        if (x < y) {
-          return -1;
-        }
-        if (x > y) {
-          return 1;
-        }
-        return 0;
-      })
-    });
-  }else{
-    res.send(movies)
+    Movie.find().sort({title:1}).then((dat=>{
+      res.send({s:dat})
+    }))
+  } else if (TAG === "id") {
+    Movie.findById(id)
+  .then((doc=>{
+    console.log(doc)
+    res.send({data:doc});
+  }))
+  } else {
+    Movie.find({}, function(err,movies){
+      res.send({movies:movies})
+    }).catch(err => console.log(err))
   }
-
-  if(TAG == "id" && id == movies.length){
-    res.send(movies[id])
-  }else{
-    res.status(404).send({status:404, error:true, message:`the movie ${id} does not exist`})
-  }
-  
-
 });
 
 app.get("/movies/update/:id?", function(req, res) {
-  ID = req.params.id
+  ID = req.params.id;
 
-  TITLE = req.query.title
-  YEAR = req.query.year
-  RATING = req.query.rating
+  TITLE = req.query.title;
+  YEAR = req.query.year;
+  RATING = req.query.rating;
 
-  function update(query,value){
-    if(query){
-      movies[ID - 1][value] = query
-    }
-  }
-
-  if(ID < movies.length){
-    update(TITLE,'title')
-    update(YEAR,'year')
-    update(RATING,'rating')
-  }else{
-    res.send(movies[ID])
-  }
-
-  res.send(movies[ID])
+  Movie.findById(ID).then((num =>{
+    Movie.updateOne(
+      {_id: num},
+      {$set:{title: TITLE,
+      year:YEAR,
+      rating:RATING
+      }}
+    )
+  }))
 });
 
 app.get("/movies/delete/:id?", function(req, res) {
-  ID = req.params.id
+  ID = req.params.id;
 
-  if(ID && ID <= movies.length){
-    movies.splice(ID - 1,1)
-    res.send(movies)
-  }else{
-    res.send({status:404, error:true, message: `the movie ${ID} does not exist`})
+  if (ID && ID <= movies.length) {
+    movies.splice(ID - 1, 1);
+    res.send(movies);
+  } else {
+    res.send({
+      status: 404,
+      error: true,
+      message: `the movie ${ID} does not exist`
+    });
   }
 });
-
 
 app.listen(3000);
 
