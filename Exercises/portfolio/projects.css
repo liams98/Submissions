@@ -1,0 +1,27 @@
+#projects-bg{
+    width:90vw;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#pr-text{
+    text-align:center
+}
+
+#project{ /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #43B9B7, #2F3D4C);
+    width:40%;
+    margin:50px;
+}
+
+
+#project{
+    text-align:center;
+}
+
+#project:hover{
+    cursor: pointer;
+}
+
