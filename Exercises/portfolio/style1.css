@@ -3,22 +3,22 @@ body{
     background-color:#43B9B7;
     width:100vw;
     height:100vh;
+    padding:0;
     margin:0;
-    padding:0
 }
 
 a{
-    text-decoration:none;
+    text-decoration:none; 
 }
 
 nav{
     font-size:25px;
     background-color:#2F3D4C;
     width:100%;
-    height:13%;
+    height:10%;
     display:flex;
     flex-direction: row;
-    justify-content: space-between
+    justify-content: space-between;
 }
 
 #name{
@@ -33,6 +33,7 @@ nav{
     margin:30px
 }
 
+
 .abc{
     color:#43B9B7;
     margin:30px;
@@ -44,7 +45,7 @@ nav{
 }
 
 #mainText{
-    font-size:35px;
+    font-size:55px;
     color:#2F3D4C;
     margin-top:150px;
 }
@@ -52,6 +53,14 @@ nav{
 footer{
     position: absolute;
     bottom:0;
+    right:0;
+    left:0;
     width:100%;
     background-color:#2F3D4C;
+}
+
+footer p{
+    text-align:center;
+    word-wrap: force;
+    font-size:20px;
 }

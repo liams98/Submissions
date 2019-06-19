@@ -1,0 +1,41 @@
+body{
+    margin:0;
+    padding:0;
+}
+
+h2{
+    text-align: center;
+}
+
+#container{
+    width:80vw;
+    margin:30px auto;
+}
+
+#logo-container{
+    
+    margin-top:150px;
+    display: flex;
+    flex-direction:row;
+    justify-content: space-around;
+    width:100%; 
+    display:flex;
+}
+
+
+#logo-container div a{
+    text-decoration: none;
+    color:#2F3D4C
+}
+
+
+
+ #linkedin{
+    width:200px;
+}
+
+#facebook{
+    width:200px;
+}
+
+
